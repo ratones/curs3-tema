@@ -32,11 +32,11 @@ public class Gym {
     }
 
     public int maxAgeOfMembers(){
-        return members.stream().map(GymMember::getAge).collect(maxBy(Integer::compare)).orElse(0);
+        return members.stream().map(GymMember::getAge).max(Integer::compare).orElse(0);
     }
 
     public int minAgeOfMembers() {
-        return members.stream().map(GymMember::getAge).collect(minBy(Integer::compare)).orElse(0);
+        return members.stream().map(GymMember::getAge).min(Integer::compare).orElse(0);
     }
 
     public String getTotalTimeRemaining(){
@@ -45,11 +45,15 @@ public class Gym {
     }
 
     public void addTimeToMember(String memberName, int hours){
-        getMemberInfoByName(memberName).ifPresent(m ->m.addTimeToSubscription(hours));
+        if(hours > 0) {
+            getMemberInfoByName(memberName).ifPresent(m -> m.addTimeToSubscription(hours));
+        }
     }
 
     public void checkoutMember(String memberName, int hoursSpent){
-        getMemberInfoByName(memberName).ifPresent(m ->m.substractHoursFromSubscription(hoursSpent));
+        if(hoursSpent > 0) {
+            getMemberInfoByName(memberName).ifPresent(m -> m.substractHoursFromSubscription(hoursSpent));
+        }
     }
 
     public void generateReport(){
