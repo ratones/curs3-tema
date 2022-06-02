@@ -1,4 +1,4 @@
-50-65 - Shaunte Halterman,Janine Gildersleeve,Taina Saint,Mack Pinkham,Phyllis Sensabaugh,Bernardina Zucco,Vinita Fielden,Shari Lennox
-Seniors - Chanel Cypher
-1-30 - Delena Spitler,Arnulfo Cavalieri,Gil Rasmussen,Azalee Weimar,Tempie Gautier,Reena Stach,Shannan Ragland,Cristine Renfrew
-30-50 - Kia Shull,Meta Malm,Leo Paschal
+0 - 15 - Arnulfo Cavalieri,Reena Stach
+20 - 30 - Delena Spitler,Gil Rasmussen,Azalee Weimar,Tempie Gautier,Shannan Ragland,Cristine Renfrew
+30 - 60 - Kia Shull,Meta Malm,Shaunte Halterman,Janine Gildersleeve,Leo Paschal,Mack Pinkham
+60 - 75 - Taina Saint,Phyllis Sensabaugh,Bernardina Zucco,Vinita Fielden,Chanel Cypher,Shari Lennox

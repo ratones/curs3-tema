@@ -5,8 +5,10 @@ import lombok.RequiredArgsConstructor;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 
 import static java.util.stream.Collectors.*;
@@ -23,10 +25,10 @@ public class PersonReportGenerator {
     private void generateReport(List<Person> persons) {
         try(BufferedWriter writer = new BufferedWriter(new FileWriter("output.txt"))) {
            Map<AgeRange, List<String>> groups =  persons.stream()
-                   .collect(groupingBy(person ->getPersonsByAgeRange(person), mapping(p -> p.fName() + " " + p.lName(), toList())));
-           groups.forEach((ageRange, strings) -> {
+                   .collect(groupingBy(this::getPersonsByAgeRange, mapping(p -> p.fName() + " " + p.lName(), toList())));
+           groups.entrySet().stream().sorted(Comparator.comparingInt(r -> r.getKey().minAge())).forEach(ageRange -> {
                try {
-                   writeLine(writer,ageRange.ageLabel(), strings);
+                   writeLine(writer,ageRange.getKey().ageLabel(),ageRange.getValue());
                } catch (IOException e) {
                    e.printStackTrace();
                }
@@ -42,7 +44,7 @@ public class PersonReportGenerator {
     }
 
     private AgeRange getPersonsByAgeRange(Person person) {
-        return ranges.stream().filter(range -> range.minAge() < person.age() && range.maxAge() >= person.age())
+        return ranges.stream().filter(range -> range.minAge() < person.age() && range.maxAge() > person.age())
                 .findFirst()
                 .orElse(new AgeRange(0,0,"Others"));
     }
